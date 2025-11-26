@@ -18,7 +18,20 @@ void postorder(std::function<void(T)> fn)const{
 void leftorder(std::function<void(T)> fn)const{
     return _leftoorder(fn, _root);
 }
-
+//complexity O(n)
+void levelorder(std::function<void(T)> fn)const{
+    std::queue<Node*> queue;
+    queue.push(_root);
+    while(not queue.empty()){
+        Node* p = queue.front();
+        queue.pop();
+        if(p){
+            fn(p->value);
+            queue.push(p->right);
+            queue.push(p->left);
+        }
+    }
+}
 //en private
 
 // O(log N)
