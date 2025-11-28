@@ -2,9 +2,32 @@
 
 //Arboles binarios:
 // en public 
+
+~TreeSet(){
+    _destructor(root)
+}
+int height(Node* p){
+    if(not p){
+        return -1;
+    }
+    return std::max(_height(p->left), _height(p->right)) + 1;
+}
+
+int leaf_count(Node* p){
+    _leafcount(root);
+}
+
+bool is_perfect(){
+    return size() == (static_cast<int> std::pow((height()+1)-1));
+}
+
+bool is_full()const{
+    return _is_full(_root);
+}
+
 bool contains(T value){
     return _contains(value,  )
-}
+} 
 
 void inorder(std::function<void(T)> fn)const{
     return _inorder(fn, _root);
@@ -32,6 +55,9 @@ void levelorder(std::function<void(T)> fn)const{
         }
     }
 }
+
+
+
 //en private
 
 // O(log N)
@@ -88,4 +114,36 @@ void leftorder(std::function<void(T)> fn, Node* p){
     }
 }
 
+_destructor(Nope* p){
+    if (not p){
+        return;
+    }
+    _destructor(p->left);
+    _destructor(p->right);
+    delete p;
+
+}
+
+bool _is_full(Node* p)const{
+    if(not p){
+        return true;
+    }
+    if(not p->left and p->rightt){
+        return true;
+    }
+    if(p->left and p->right){
+        return _is_full(p->left) and _is_full(p->right);
+    }
+    return false;
+}
+
+int _leafcount(Node* p){
+    if (not p){
+        return 0;
+    }
+    if (not p->left and not p->right){
+        return 1;
+    }
+    return _leafcount(p->left) + _leafcount(p->right)
+}
 
